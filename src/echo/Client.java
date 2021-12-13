@@ -1,4 +1,4 @@
-//2021.12.13(월)15:35수업
+//2021.12.13(월)15:35수업 어려움
 
 package echo;
 
@@ -14,39 +14,38 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
+
 	public static void main(String[] args) throws IOException {
 
 		Socket socket = new Socket();
 
 		System.out.println("<클라이언트 시작>");
-		System.out.println("========================");
+		System.out.println("=======================================");
 
 		System.out.println("[서버에 연결을 요청합니다.]");
-		// 3.커넥트를 요청한다.
-		socket.connect(new InetSocketAddress("192.168.219.101", 10001));
+
+		socket.connect(new InetSocketAddress("192.168.0.56", 10001));
 
 		System.out.println("[서버에 연결되었습니다.]");
 
-		// 서버로 메세지 보내기용 stream
-		OutputStream os = socket.getOutputStream();// 주stream
+		// 메세지 보내기 스트림
+		OutputStream os = socket.getOutputStream(); // 주스트림
 		OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
 		BufferedWriter bw = new BufferedWriter(osw);
 
-		// 서버에서 메세지 받기용 stream
+		// 메세지 받기 스트림
 		InputStream is = socket.getInputStream();
 		InputStreamReader isr = new InputStreamReader(is, "UTF-8");
 		BufferedReader br = new BufferedReader(isr);
 
 		// Scanner (키보드 입력용)
 		Scanner sc = new Scanner(System.in);
-
-		// 반복 구간
-		while (true) { // str.equals("/q")라 해도 똑같은데 혹시 str 주소가 없을까봐 순서 변경해서 작성
-
+		
+		while(true) {
 			String str = sc.nextLine();
-
-			if ("/q".equals(str)) {// ==는 바로 메모리에 못 넣고 주소 비교하는 거라 equals
-				System.out.println("종료키 입력");
+			
+			if("/q".equals(str)) {
+				System.out.println("[종료키 입력]");
 				break;
 			}
 
@@ -59,13 +58,13 @@ public class Client {
 			String reMsg = br.readLine();
 			System.out.println("server:[" + reMsg + "]");
 
-			System.out.println("========================");
-			System.out.println("<클라이언트 종료>");
-			bw.close();
-			sc.close();
-			socket.close();
-
 		}
-
+		
+		System.out.println("=======================================");
+		System.out.println("<클라이언트종료>");
+		sc.close();
+		bw.close();
+		socket.close();
 	}
+
 }
