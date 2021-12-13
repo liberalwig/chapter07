@@ -1,4 +1,4 @@
-//2021.12.13(월)15:35수업 어려움
+//2021.12.13(월)15:35수업 어려움. 이후엔 Client에만 변형 가함
 package echo;
 
 import java.io.IOException;
