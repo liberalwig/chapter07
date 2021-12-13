@@ -66,8 +66,16 @@ public class Client {
 		}
 
 		System.out.println("=======================================");
-		System.out.println("<클라이언트종료>");
 		
+		//System.out.println("<클라이언트종료>");
+		OutputStream out = System.out;
+		OutputStreamWriter posw = new OutputStreamWriter(out);
+		BufferedWriter pbw = new BufferedWriter(posw);
+		
+		pbw.write("<클라이언트 종료> 스트림 사용 구현");
+		pbw.newLine();
+		pbw.flush();
+				
 		bw.close();
 		socket.close();
 	}
