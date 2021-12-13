@@ -1,4 +1,4 @@
-//2021.12.13(월)15:35수업 어려움
+//2021.12.13(월)17:00수업 어려움
 
 package echo;
 
@@ -11,7 +11,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
 
@@ -38,13 +37,19 @@ public class Client {
 		InputStreamReader isr = new InputStreamReader(is, "UTF-8");
 		BufferedReader br = new BufferedReader(isr);
 
-		// Scanner (키보드 입력용)
-		Scanner sc = new Scanner(System.in);
-		
-		while(true) {
-			String str = sc.nextLine();
-			
-			if("/q".equals(str)) {
+		/*
+		 * Scanner: 키보드 입력용. 세 번째 버퍼 이름 몰라서 아래 살리려고 여기 주석처리 Scanner sc = new
+		 * Scanner(System.in);
+		 */
+
+		InputStream in = System.in;
+		InputStreamReader sisr = new InputStreamReader(in, "UTF-8");
+		BufferedReader sbr = new BufferedReader(sisr);
+
+		while (true) {
+			String str = sbr.readLine();
+
+			if ("/q".equals(str)) {
 				System.out.println("[종료키 입력]");
 				break;
 			}
@@ -59,10 +64,10 @@ public class Client {
 			System.out.println("server:[" + reMsg + "]");
 
 		}
-		
+
 		System.out.println("=======================================");
 		System.out.println("<클라이언트종료>");
-		sc.close();
+		
 		bw.close();
 		socket.close();
 	}
